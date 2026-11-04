@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Estoque</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    document.documentElement.dataset.theme = localStorage.getItem('ce_theme') || 'light';
+    if (localStorage.getItem('ce_sidebar') === 'collapsed') document.documentElement.classList.add('sidebar-collapsed');
+  </script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-logo"><i class="fa-solid fa-boxes-stacked"></i></div>
+        <div class="brand-text"><strong id="brandName">Controle de Estoque</strong><small>Gestão inteligente</small></div>
+      </div>
+
+      <nav class="nav">
+        <span class="nav-label">Principal</span>
+        <a href="#dashboard" data-page="dashboard" title="Dashboard"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a>
+        <a href="#produtos" data-page="produtos" title="Produtos"><i class="fa-solid fa-box"></i><span>Produtos</span></a>
+        <a href="#entradas" data-page="entradas" title="Entradas"><i class="fa-solid fa-truck-ramp-box"></i><span>Entradas</span></a>
+        <a href="#vendas" data-page="vendas" title="Vendas"><i class="fa-solid fa-cash-register"></i><span>Vendas</span></a>
+        <span class="nav-label">Gestão</span>
+        <a href="#reposicao" data-page="reposicao" title="Reposição"><i class="fa-solid fa-cart-shopping"></i><span>Reposição</span><b class="nav-badge" id="navAlertBadge"></b></a>
+        <a href="#relatorios" data-page="relatorios" title="Relatórios"><i class="fa-solid fa-chart-line"></i><span>Relatórios</span></a>
+        <a href="#config" data-page="config" title="Configurações"><i class="fa-solid fa-gear"></i><span>Configurações</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <div class="avatar" id="userAvatar"></div>
+          <div class="user-info"><strong id="userName"></strong><small id="userEmail"></small></div>
+          <button class="icon-btn ghost" id="logoutBtn" title="Sair"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </div>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn" id="menuToggle" title="Menu"><i class="fa-solid fa-bars"></i></button>
+        <div class="topbar-title">
+          <h1 id="pageTitle">Dashboard</h1>
+          <p id="pageSubtitle"></p>
+        </div>
+        <div class="topbar-actions">
+          <a href="#vendas" class="btn btn-primary btn-sm" id="quickSaleBtn"><i class="fa-solid fa-plus"></i><span>Nova venda</span></a>
+          <button class="icon-btn" id="themeToggle" title="Alternar tema"><i class="fa-solid fa-moon"></i></button>
+          <div class="dropdown">
+            <button class="icon-btn" id="bellBtn" title="Alertas"><i class="fa-solid fa-bell"></i><span class="dot-badge" id="bellBadge"></span></button>
+            <div class="dropdown-menu" id="bellMenu"></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="page" id="page-dashboard"></section>
+        <section class="page" id="page-produtos"></section>
+        <section class="page" id="page-entradas"></section>
+        <section class="page" id="page-vendas"></section>
+        <section class="page" id="page-reposicao"></section>
+        <section class="page" id="page-relatorios"></section>
+        <section class="page" id="page-config"></section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="modal">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h3 id="modalTitle"></h3>
+        <button class="icon-btn" data-close title="Fechar"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script type="module" src="assets/js/auth-guard.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/chatbot.js"></script>
+</body>
+</html>
